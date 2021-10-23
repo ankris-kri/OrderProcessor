@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace OrderProcessor.Models
 {
     public class BasketItem
     {
+        [JsonIgnore]
         [Required]
         public Guid Id { get; set; }
         [Required]
@@ -29,12 +31,15 @@ namespace OrderProcessor.Models
     {
         Book,
         Membership,
-        Video
+        Video,
+        WashingMachine,
+        Commission
     }
 
     public enum ProductCategoryName
     {
-        Physical,
-        Virtual
+        PhysicalDeliverable,
+        VirtualDeliverable,
+        Internal
     }
 }

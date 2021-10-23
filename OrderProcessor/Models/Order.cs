@@ -33,5 +33,11 @@ namespace OrderProcessor.Models
             PackagingSlips ??= new List<PackagingSlip>();
             PackagingSlips.Add(newPackagingSlip);
         }
+
+        public void SetActionsPerformed(string action)
+        {
+            ActionsPerformed ??= new List<string>();
+            ActionsPerformed.Add(action);
+        }
     }
 }
