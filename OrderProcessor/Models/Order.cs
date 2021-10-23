@@ -9,7 +9,7 @@ namespace OrderProcessor.Models
         public string OrderId { get; set; }
         [Required, MinLength(1)]
         public List<BasketItem> BasketItems { get; set; }
-        public MembershipDetail MembershipDetail { get; private set; }
+        public MembershipDetail MembershipDetail { get; set; }
         public List<PackagingSlip> PackagingSlips { get; private set; }
 
         /// <summary>

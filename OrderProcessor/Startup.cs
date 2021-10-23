@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Converters;
 using OrderProcessor.Registry;
 
 namespace OrderProcessor
@@ -17,10 +18,10 @@ namespace OrderProcessor
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            //Included StringEnumConverter for easy readability of Enum in postman for DEMO purpose only
+            services.AddControllers().AddNewtonsoftJson(opts => opts.SerializerSettings.Converters.Add(new StringEnumConverter()));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -28,7 +29,6 @@ namespace OrderProcessor
             builder.RegisterModule(new PaymentRulesRegistry());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

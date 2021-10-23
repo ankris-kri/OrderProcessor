@@ -48,6 +48,7 @@ namespace OrderProcessor.Tests.Rules
 
             //Act
             var isMatchRuleResult = sut.IsMatch(order);
+            if (isMatchRuleResult) sut.Execute(order);
 
             //Assert
             Assert.That(isMatchRuleResult, Is.True);
@@ -83,6 +84,7 @@ namespace OrderProcessor.Tests.Rules
 
             //Act
             var isMatchRuleResult = sut.IsMatch(order);
+            if (isMatchRuleResult) sut.Execute(order);
 
             //Assert
             Assert.That(isMatchRuleResult, Is.False);

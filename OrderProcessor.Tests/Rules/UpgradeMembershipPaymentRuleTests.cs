@@ -37,12 +37,12 @@ namespace OrderProcessor.Tests.Rules
                         ProductCategoryName = ProductCategoryName.VirtualDeliverable,
                         ProductGroupName = ProductGroupName.Membership
                     }
+                },
+                MembershipDetail = new MembershipDetail
+                {
+                    ValidUpto = DateTime.Today.AddMonths(1)
                 }
             };
-            order.SetMembershipDetail(new MembershipDetail
-            {
-                ValidUpto = DateTime.Today.AddMonths(1)
-            }) ;
 
             var expectedMembership = new MembershipDetail
             {
@@ -51,6 +51,7 @@ namespace OrderProcessor.Tests.Rules
 
             //Act
             var isMatchRuleResult = sut.IsMatch(order);
+            if (isMatchRuleResult) sut.Execute(order);
 
             //Assert
             Assert.That(isMatchRuleResult, Is.True);
@@ -86,6 +87,7 @@ namespace OrderProcessor.Tests.Rules
 
             //Act
             var isMatchRuleResult = sut.IsMatch(order);
+            if (isMatchRuleResult) sut.Execute(order);
 
             //Assert
             Assert.That(isMatchRuleResult, Is.False);

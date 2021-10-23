@@ -1,5 +1,6 @@
 ﻿using OrderProcessor.Models;
 using System;
+using System.Linq;
 
 namespace OrderProcessor.Rules
 {
@@ -7,12 +8,13 @@ namespace OrderProcessor.Rules
     {
         public override void Execute(Order order)
         {
-            throw new NotImplementedException();
+            order.SetPackagingSlips(new PackagingSlip { Department = Department.Royality });
+            order.SetActionsPerformed("Packaging slip for royalty generated");
         }
 
         public override bool IsMatch(Order order)
         {
-            throw new NotImplementedException();
+            return order.BasketItems.Any(item => item.ProductGroupName == ProductGroupName.Book);
         }
     }
 }
