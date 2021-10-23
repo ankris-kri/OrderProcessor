@@ -3,7 +3,7 @@ using System;
 
 namespace OrderProcessor.Rules
 {
-    public class UpgradeMemberShipPaymentRule : RuleBase
+    public class UpgradeMemberShipPaymentRule : PaymentRuleBase
     {
         public override void Execute(Order order)
         {

@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using OrderProcessor.Models;
+using OrderProcessor.RuleEngines;
 
 namespace OrderProcessor.Controllers
 {
@@ -12,16 +9,19 @@ namespace OrderProcessor.Controllers
     [Route("[controller]")]
     public class PaymentController : ControllerBase
     {
-        public PaymentController()
+        private readonly IPaymentRuleEngine _ruleEngine;
+        public PaymentController(IPaymentRuleEngine ruleEngine)
         {
+            _ruleEngine = ruleEngine;
         }
 
         [HttpPost]
-        public IActionResult Process()
+        public IActionResult Process(Order order)
         {
             try
             {
-                return Ok();
+                _ruleEngine.ExecuteRules(order);
+                return Ok(order);
             }
             catch
             {

@@ -14,9 +14,9 @@ namespace OrderProcessor.RuleEngines
 
     public class PaymentRuleEngine : IPaymentRuleEngine
     {
-        private readonly IEnumerable<RuleBase> _rules;
+        private readonly IEnumerable<PaymentRuleBase> _rules;
 
-        public PaymentRuleEngine(IEnumerable<RuleBase> rules)
+        public PaymentRuleEngine(IEnumerable<PaymentRuleBase> rules)
         {
             _rules = rules;
         }

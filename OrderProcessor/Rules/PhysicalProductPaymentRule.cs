@@ -3,7 +3,7 @@ using System;
 
 namespace OrderProcessor.Rules
 {
-    public class PhysicalProductPaymentRule : RuleBase
+    public class PhysicalProductPaymentRule : PaymentRuleBase
     {
         public override void Execute(Order order)
         {
